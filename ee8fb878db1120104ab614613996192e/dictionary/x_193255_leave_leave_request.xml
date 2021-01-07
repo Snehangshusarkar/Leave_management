@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Leave Request" max_length="40" name="x_193255_leave_leave_request" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Leave Type" max_length="40" name="leave_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Type A" sequence="0" value="Type A"/>
+                <element inactive_on_update="false" label="Type B" sequence="1" value="Type B"/>
+                <element inactive_on_update="false" label="Type C" sequence="2" value="Type C"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Active" max_length="40" name="u_active" type="boolean"/>
+    </element>
+</database>
