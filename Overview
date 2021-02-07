@@ -1,0 +1,33 @@
+This is a tool which helps our users to manage their planned leaves. As per the current process, our users/engineers supports multiple customers and when they are going on PTO, they have to gone through the below steps.
+- Send an email to the peers DL (DLs are segregated based on the region e.g. EMEA, NA, APAC etc.)
+- Peers will pick up the customers to cover during the absence. 
+- Once all customers got the cover/backup engineer, send an final email to the peers DL and copy the manager.
+- Send a reminder email to the backup engineer on the date set by the requestor engineer.
+- Send an email to the customer with the backup engineer on the date set by the requestor engineer.
+- Set the backup engineer field in the custom table i.e. "core_company" with the the backup engineer so that during the absence of primary engineer, backup engineer will be taking care of that customer
+
+We have developed this tool in ServiceNow to automate all these steps and make our leave management eaiser and human effort free.
+
+Step 1: 
+- Added a new checkbox called "Out of Office" in the sys_user table along with OOO Start Date and OOO End Date to capture the duration of the PTO.
+- Apart from these fields, we've added another field called "Special notes for Backup Engineer". If primary engineer has any information to pass on to the backup engineer, that can be updated in this field.
+- Once these fields are set and orm is submitted, our application will be triggered and send an email to the peer DL followed by the pre-defined metric.
+
+
+Step 2:
+- It will also create a Virtual Task Board to manage the customer tracking and make the customer assignment flexible.
+
+Step 3:
+- Once all customers are picked up by other engineers, an email will be sent to the requestor engineer to confirm and approve the ffinal list of the backup engineers
+- After ther approval, an email will be sent to the peers DL with the final list of backup engineers.
+
+Step 4:
+- In the approval form, there is field to set the desired date to send a reminder email to the backup engineer.
+- In the backend, we've a schedule job which runs in a daily basis and if the date matches, then trigger an event and send the reminder email to the backup engineers.
+
+Step 5:
+- In the approval form, there is field to set the desired date to an email to the customer with the backup engineer.
+- In the backend, we've a schedule job which runs in a daily basis and if the date matches, then trigger an event and send an email to the customers.
+
+Step 6:
+- In the backend, we've a schedule job which runs in a daily basis and if the today's date is one day prior to the PTO start date, then it will update the backup engineer field in the custom table i.e. "core_company". 
